@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<types:mule xmlns:types="http://www.mulesoft.org/schema/mule/types">
+  <types:catalog>
+    <types:type name="breakfastjson" format="json">
+      <types:shape format="weave" example="examples/breakfast.json"><![CDATA[%dw 2.0
+
+type breakfastjson = {|
+  breakfast_menu: {|
+    food: {|
+      name: String, 
+      price: String, 
+      description: String, 
+      calories: String
+    |}
+  |}
+|} {"example": "{\\\"breakfast_menu\\\":{\\\"food\\\":{\\\"name\\\":\\\"Belgian Waffles\\\",\\\"price\\\":\\\"\$5.95\\\",\\\"description\\\":\\\"\\\\nTwo of our famous Belgian Waffles with plenty of real maple syrup\\\\n\\\",\\\"calories\\\":\\\"650\\\"}}}"}
+
+]]></types:shape>
+    </types:type>
+    <types:type name="breakfastxml" format="xml">
+      <types:example format="xml" element="breakfast_menu" location="examples/breakfast.xml"/>
+    </types:type>
+  </types:catalog>
+  <types:enrichment select="#04ca2ff0-dc53-4843-826c-c41790f2c00b">
+    <types:processor-declaration>
+      <types:input-event>
+        <types:message>
+          <types:payload type="breakfastxml"/>
+        </types:message>
+      </types:input-event>
+      <types:output-event>
+        <types:message>
+          <types:payload type="breakfastjson"/>
+        </types:message>
+      </types:output-event>
+    </types:processor-declaration>
+  </types:enrichment>
+</types:mule>

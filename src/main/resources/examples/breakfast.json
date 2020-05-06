@@ -1,0 +1,10 @@
+{
+    "breakfast_menu": {
+        "food": {
+            "name": "Belgian Waffles",
+            "price": "$5.95",
+            "description": "\nTwo of our famous Belgian Waffles with plenty of real maple syrup\n",
+            "calories": "650"
+        }
+    }
+}
